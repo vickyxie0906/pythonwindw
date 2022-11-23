@@ -4,7 +4,7 @@ import tkinter as tk
 
 
 class Window(tk.Tk):
-    def __init__(self):
+    def __init__(self,cities_dict):
         super().__init__()
         title_Label = tk.Label(self, text="各縣市4天天氣預測", font=(
             "Arial", 20)).pack(padx=30, pady=30)
@@ -12,13 +12,17 @@ class Window(tk.Tk):
         #建立存放按鈕的容器
         buttons_frame=tk.Frame(self,background="#cccccc", width=200,height=300)
         buttons_frame.pack()
+
+        for  key in cities_dict:
+            tk.Button(buttons_frame,text=key).pack(side=tk.LEFT)
+            # print(key)
         
 
 
 
 def main():
     # print("這裡是MAIN FUNCTION")
-    window=Window()
+    window=Window(ds.tw_county_names)
     window.title("各縣市4天天氣預測")
     window.mainloop()
 
