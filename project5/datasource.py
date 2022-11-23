@@ -34,3 +34,4 @@ def get_forcast_data(cityName,api_key):
         return response.json()["list"]
     else:
         print("下載失敗")
+        raise Exception(f"{cityName}下載失敗")
