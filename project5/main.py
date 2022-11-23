@@ -8,6 +8,10 @@ class Window(tk.Tk):
         super().__init__()
         title_Label = tk.Label(self, text="各縣市4天天氣預測", font=(
             "Arial", 20)).pack(padx=30, pady=30)
+
+        #建立存放按鈕的容器
+        buttons_frame=tk.Frame(self,background="#cccccc", width=200,height=300)
+        buttons_frame.pack()
         
 
 
