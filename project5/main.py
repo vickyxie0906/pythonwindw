@@ -15,7 +15,7 @@ class Window(tk.Tk):
 
         for  index,key in enumerate(cities_dict):
             # print(index,key)
-            tk.Button(buttons_frame, text=key, font=("Arial",15),padx=20, pady=5).grid(row=index % 3, column=index//3)
+            tk.Button(buttons_frame, text=key, font=("Arial",15),padx=20, pady=3).grid(row=index % 3, column=index//3)
             # (row=index%4 餘數 ,column=index//4)
         
         # for key in cities_dict:
