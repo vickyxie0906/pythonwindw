@@ -6,6 +6,9 @@ import tkinter as tk
 class Window(tk.Tk):
     def __init__(self):
         super().__init__()
+        title_Label=tk.Label(self, text="各縣市4天天氣預測",font=("Arial",20))
+        title_Label.pack(padx=30,pady=30)
+
 
 
 def main():
@@ -29,5 +32,5 @@ def main():
     # print(type(list_data))
 
 if __name__ =="__main__":
-    print("這裡是程式的執行點")
+    # print("這裡是程式的執行點")
     main()
