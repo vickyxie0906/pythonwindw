@@ -1,4 +1,4 @@
-import requests
+import requests  # 載入requests模組
 
 cityName="Taipei"
 

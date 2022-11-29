@@ -1,22 +1,23 @@
-import datasource as ds
-from secrets import api_key 
-import tkinter as tk
+import datasource as ds  # 載入datasource 縮寫ds
+from secrets import api_key  # 引入secrets 的api_key
+import tkinter as tk  # 引入tkinter縮寫tk
 
-
-class Window(tk.Tk):
-    def __init__(self,cities_dict):
-        super().__init__()
+#建立框架
+class Window(tk.Tk): #繼承TK類別
+    def __init__(self,cities_dict): #建構子 (城市字典)
+        super().__init__()#呼叫建構子父類別  # 建立視窗內容標題
         title_Label = tk.Label(self, text="各縣市4天天氣預測", font=(
-            "Arial", 20)).pack(padx=30, pady=30)
+            "Arial", 20)).pack(padx=30, pady=30) #設定標籤文字的大小 字型 間距
 
         #建立存放按鈕的容器
-        buttons_frame=tk.Frame(self)
-        buttons_frame.pack(padx=50,pady=(0,30))
+        buttons_frame=tk.Frame(self) #建立框架
+        buttons_frame.pack(padx=50,pady=(0,30)) #左右 下上 間距
 
-        for  index,key in enumerate(cities_dict):
-            # print(index,key)
+        for index, key in enumerate(cities_dict):  # enumerate會回傳索引值 將數據組合為索引序列 一般用在迴圈
+            print(index,key)
             tk.Button(buttons_frame, text=key, font=("Arial",15),padx=20, pady=3).grid(row=index % 3, column=index//3)
-            # (row=index%4 餘數 ,column=index//4)
+            # 建立按鈕, 字體 15 寬20 高3. grid 網格容器
+            # (row=index% 餘數 ,column=index// 整數除法) 欄(column) 列(row)
         
         # for key in cities_dict:
         #     tk.Button(buttons_frame, text=key).pack(side=tk.LEFT)
@@ -27,9 +28,9 @@ class Window(tk.Tk):
 
 def main():
     # print("這裡是MAIN FUNCTION")
-    window=Window(ds.tw_county_names)
-    window.title("各縣市4天天氣預測")
-    window.mainloop()
+    window=Window(ds.tw_county_names)#建立視窗物件
+    window.title("各縣市4天天氣預測")#視窗標題
+    window.mainloop()  # 進入持續處理視窗循環
 
 
 
@@ -45,6 +46,6 @@ def main():
     '''   
     # print(type(list_data))
 
-if __name__ =="__main__":
-    # print("這裡是程式的執行點")
-    main()
+if __name__ =="__main__":#
+    # print("這裡是程式的執行點")#印出訊息
+    main()#呼叫主函式
