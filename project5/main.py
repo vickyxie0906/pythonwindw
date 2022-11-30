@@ -30,9 +30,9 @@ class Window(tk.Tk):  # 繼承TK類別
             # tk.Button(buttons_frame, text=key, font=("Arial",15),padx=20, pady=3).grid(row=index % 3, column=index//3)
             # 建立按鈕, 字體 15 寬20 高3. grid 網格容器
             # (row=index% 餘數 ,column=index// 整數除法) 欄(column) 列(row)
-        
 
     # 實體的方法
+
     def button_click(self, event):
         # print(dir(event))查event方法
         btn_text = event.widget['text']  # -->type=tkinter button
@@ -41,23 +41,30 @@ class Window(tk.Tk):  # 繼承TK類別
         cname = name_list[0]
         ename = name_list[1]
         # print(f"{cname}-{ename}")
-        city_forcast = ds.get_forcast_data(ename, api_key)
+        city_forcase = ds.get_forcast_data(ename, api_key)
         print(cname)
-        print(city_forcast)
-        
-        if hasattr(self,"displayFrame"):#檢查有沒有原框架
+        # print(city_forcase)
+
+        if hasattr(self, "displayFrame"):  # 檢查有沒有原框架
             self.displayFrame.destroy()  # 消滅原來顯示資料的框架 重新再建一個
 
         self.displayFrame = DisplayFrame(
-            self, text=cname, width=500, height=400, borderwidth=2, relief=tk.GROOVE)  # 顯示資料的框架 relief按鈕邊框樣式
+            self, data=city_forcase, text=cname, borderwidth=2, relief=tk.GROOVE)  # 顯示資料的框架 relief按鈕邊框樣式
         self.displayFrame.pack(fill=tk.BOTH, padx=50, pady=(0, 30))
 
 
-class DisplayFrame(ttk.LabelFrame):  # 繼承ttk.LabelFrame
-    def __init__(self,parent,**kwargs):
-        print(kwargs)
-        super().__init__(parent,**kwargs)
+class DisplayFrame(ttk.LabelFrame):  # 繼承ttk.LabelFrame父類別
+    def __init__(self, parent, data=None, **kwargs):  # **kwargs是打包上面DisplayFrame()裡的內容
+        super().__init__(parent, **kwargs)  # parent為父類別,**kwargs是dict為引數名稱
+        self.city_data = data
+        leftFrame = tk.Frame(self, width=200, height=200, bg="#ff0000")
+        leftFrame.pack(side=tk.LEFT)
 
+        centerFrame = tk.Frame(self, width=200, height=200, bg="#00ff00")
+        centerFrame.pack(side=tk.LEFT)
+
+        rightFrame = tk.Frame(self, width=200, height=200, bg="#0000ff")
+        rightFrame.pack(side=tk.LEFT)
 
 
 def main():
