@@ -53,8 +53,10 @@ class Window(tk.Tk):  # 繼承TK類別
         self.displayFrame.pack(fill=tk.BOTH, padx=50, pady=(0, 30))
 
 
-class DisplayFrame(ttk.LabelFrame):
-    pass
+class DisplayFrame(ttk.LabelFrame):  # 繼承ttk.LabelFrame
+    def __init__(self,parent,**kwargs):
+        print(kwargs)
+        super().__init__(parent,**kwargs)
 
 
 
