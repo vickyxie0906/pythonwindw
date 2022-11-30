@@ -41,8 +41,15 @@ class Window(tk.Tk):  # 繼承TK類別
         cname = name_list[0]
         ename = name_list[1]
         # print(f"{cname}-{ename}")
-        city_forcase = ds.get_forcast_data(ename, api_key)
-        print(cname)
+
+        try:
+         city_forcase = ds.get_forcast_data(ename, api_key)
+
+        except Exception as e:
+            #出現錯誤訊息
+            return
+            
+        # print(cname)
         # print(city_forcase)
 
         if hasattr(self, "displayFrame"):  # 檢查有沒有原框架
