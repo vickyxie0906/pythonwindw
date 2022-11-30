@@ -12,10 +12,13 @@ class Window(tk.Tk): #繼承TK類別
         #建立存放按鈕的容器
         buttons_frame=tk.Frame(self) #建立框架
         buttons_frame.pack(padx=50,pady=(0,30)) #左右 下上 間距
-
+        #設定GRID的ROW數量
+        grid_row_nums=3
         for index, key in enumerate(cities_dict):  # enumerate會回傳索引值 將數據組合為索引序列 一般用在迴圈
-            print(index,key)
-            tk.Button(buttons_frame, text=key, font=("Arial",15),padx=20, pady=3).grid(row=index % 3, column=index//3)
+            # print(index,key)
+            tk.Button(buttons_frame, text=key, font=("Arial", 15),
+                      padx=20, pady=3).grid(row=index % grid_row_nums, column=index//grid_row_nums)
+            # tk.Button(buttons_frame, text=key, font=("Arial",15),padx=20, pady=3).grid(row=index % 3, column=index//3)
             # 建立按鈕, 字體 15 寬20 高3. grid 網格容器
             # (row=index% 餘數 ,column=index// 整數除法) 欄(column) 列(row)
         
