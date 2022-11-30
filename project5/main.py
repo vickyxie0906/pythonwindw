@@ -45,12 +45,17 @@ class Window(tk.Tk):  # 繼承TK類別
         print(cname)
         print(city_forcast)
         
-        if hasattr(self,"displayFrame"):
+        if hasattr(self,"displayFrame"):#檢查有沒有原框架
             self.displayFrame.destroy()  # 消滅原來顯示資料的框架 重新再建一個
 
-        self.displayFrame = ttk.LabelFrame(
+        self.displayFrame = DisplayFrame(
             self, text=cname, width=500, height=400, borderwidth=2, relief=tk.GROOVE)  # 顯示資料的框架 relief按鈕邊框樣式
         self.displayFrame.pack(fill=tk.BOTH, padx=50, pady=(0, 30))
+
+
+class DisplayFrame(ttk.LabelFrame):
+    pass
+
 
 
 def main():
