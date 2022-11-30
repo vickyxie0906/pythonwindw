@@ -64,17 +64,14 @@ class DisplayFrame(ttk.LabelFrame):  # 繼承ttk.LabelFrame父類別
         centerData = self.city_data[column_rows:column_rows*2]  # 14不包含 到28
         rightData = self.city_data[column_rows*2:]  # 28到最後
 
-        leftFrame = CustomFrame(self, data=leftData,
-                                width=200, height=200, bg="#87e0fd")
-        leftFrame.pack(side=tk.LEFT)
+        leftFrame = CustomFrame(self, data=leftData)
+        leftFrame.pack(side=tk.LEFT,padx=10)
 
-        centerFrame = CustomFrame(
-            self, data=centerData, width=200, height=200, bg="#fcecfc")
-        centerFrame.pack(side=tk.LEFT)
+        centerFrame = CustomFrame(self, data=centerData)
+        centerFrame.pack(side=tk.LEFT, padx=10)
 
-        rightFrame = CustomFrame(self, data=rightData,
-                                 width=200, height=200, bg="#fefcea")
-        rightFrame.pack(side=tk.LEFT)
+        rightFrame = CustomFrame(self, data=rightData)
+        rightFrame.pack(side=tk.LEFT, padx=10)
 
 
 class CustomFrame(tk.Frame):
@@ -82,7 +79,8 @@ class CustomFrame(tk.Frame):
         super().__init__(parent, **kwargs)
         self.list_data = data
         print(self.list_data)
-        self.tree = ttk.Treeview(self, columns=['#1', '#2', '#3', '#4'])
+        self.tree = ttk.Treeview(self, columns=['#1', '#2', '#3', '#4'],show='headings',height=14)
+        # height=14顯示14筆
 
         self.tree.pack(side=tk.LEFT)
 
@@ -97,7 +95,7 @@ class CustomFrame(tk.Frame):
         self.tree.column('#4', width=50, anchor='center')
 
         for item in self.list_data:
-            self.tree.insert('',tk.END,values=item)
+            self.tree.insert('', tk.END, values=item)
 
 
 def main():
