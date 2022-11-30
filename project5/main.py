@@ -38,7 +38,10 @@ class Window(tk.Tk): #繼承TK類別
         name_list = btn_text.split("\n")  # split分割
         cname = name_list[0]
         ename=name_list[1]
-        print(f"{cname}-{ename}")
+        # print(f"{cname}-{ename}")
+        city_forcast=ds.get_forcast_data(ename,api_key)
+        print(cname)
+        print(city_forcast)
         
 
 
