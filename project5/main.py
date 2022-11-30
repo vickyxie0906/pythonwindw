@@ -57,14 +57,18 @@ class DisplayFrame(ttk.LabelFrame):  # 繼承ttk.LabelFrame父類別
     def __init__(self, parent, data=None, **kwargs):  # **kwargs是打包上面DisplayFrame()裡的內容
         super().__init__(parent, **kwargs)  # parent為父類別,**kwargs是dict為引數名稱
         self.city_data = data
-        leftFrame = tk.Frame(self, width=200, height=200, bg="#ff0000")
+        leftFrame = CustomFrame(self, width=200, height=200, bg="#87e0fd")
         leftFrame.pack(side=tk.LEFT)
 
-        centerFrame = tk.Frame(self, width=200, height=200, bg="#00ff00")
+        centerFrame = CustomFrame(self, width=200, height=200, bg="#fcecfc")
         centerFrame.pack(side=tk.LEFT)
 
-        rightFrame = tk.Frame(self, width=200, height=200, bg="#0000ff")
+        rightFrame = CustomFrame(self, width=200, height=200, bg="#fefcea")
         rightFrame.pack(side=tk.LEFT)
+
+class CustomFrame(tk.Frame):
+    def __init__(self, parent, **kwargs):
+        super().__init__(parent, **kwargs)
 
 
 def main():
