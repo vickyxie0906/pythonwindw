@@ -20,7 +20,7 @@ class Window(tk.Tk): #繼承TK類別
             btn=tk.Button(buttons_frame, text=f"{cname}\n{ename}",font=("Arial", 15),width=8,padx=20, pady=3)
             btn.grid(row=index % grid_row_nums, column=index//grid_row_nums,padx=5,pady=5)
             btn.bind("<Button>", self.button_click)
-            
+            # <Button-1>滑鼠左鍵點選的座標XY
             
             # tk.Button(buttons_frame, text=key, font=("Arial",15),padx=20, pady=3).grid(row=index % 3, column=index//3)
             # 建立按鈕, 字體 15 寬20 高3. grid 網格容器
@@ -31,8 +31,14 @@ class Window(tk.Tk): #繼承TK類別
             # print(key)
         
     #實體的方法
-    def button_click(self,event):
-        print(type(event))
+    def button_click(self, event):  
+        # print(dir(event))查event方法
+        btn_text = event.widget['text']  # -->type=tkinter button
+        # widget抓按鈕文字 #屬性widget=button,抓資料["text"]取出文字
+        name_list = btn_text.split("\n")  # split分割
+        cname = name_list[0]
+        ename=name_list[1]
+        print(f"{cname}-{ename}")
         
 
 
