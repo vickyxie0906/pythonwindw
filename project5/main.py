@@ -13,7 +13,7 @@ class Window(tk.Tk):  # 繼承TK類別
 
         # 建立存放按鈕的容器
         buttons_frame = tk.Frame(self)  # 建立框架
-        buttons_frame.pack(padx=50, pady=(0, 30))  # 左右 下上 間距
+        buttons_frame.pack(padx=50, pady=(0, 30))  # 左右 上下 間距
         # 設定GRID的ROW數量
         grid_row_nums = 3
         # enumerate會回傳索引值 將數據組合為索引序列 一般用在迴圈 加上.items()回傳 key value
@@ -79,10 +79,17 @@ class CustomFrame(tk.Frame):
         super().__init__(parent, **kwargs)
         self.list_data = data
         print(self.list_data)
-        self.tree = ttk.Treeview(self, columns=['#1', '#2', '#3', '#4'],show='headings',height=14)
-        # height=14顯示14筆
+        self.tree = ttk.Treeview(self, columns=['#1', '#2', '#3', '#4'],show='headings',height=10)
+        # height=14 當頁顯示14筆
+        self.tree.pack(side=tk.LEFT)#網頁先靠左(要先寫不然拉霸會先靠左)
 
-        self.tree.pack(side=tk.LEFT)
+        scrollbar=tk.Scrollbar(self)
+        scrollbar.pack(side=tk.LEFT,fill=tk.Y)#拉霸再靠左
+        self.tree.config(yscrollcommand=scrollbar.set)
+        scrollbar.config(command=self.tree.yview)
+
+
+        
 
         self.tree.heading('#1', text='時間')
         self.tree.heading('#2', text='溫度')
