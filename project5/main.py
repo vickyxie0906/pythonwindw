@@ -1,6 +1,8 @@
 import datasource as ds  # 載入datasource 縮寫ds
 from secrets import api_key  # 引入secrets 的api_key
 import tkinter as tk  # 引入tkinter縮寫tk
+from tkinter import ttk
+
 
 #建立框架
 class Window(tk.Tk): #繼承TK類別
@@ -25,10 +27,9 @@ class Window(tk.Tk): #繼承TK類別
             # tk.Button(buttons_frame, text=key, font=("Arial",15),padx=20, pady=3).grid(row=index % 3, column=index//3)
             # 建立按鈕, 字體 15 寬20 高3. grid 網格容器
             # (row=index% 餘數 ,column=index// 整數除法) 欄(column) 列(row)
+        displayFrame= ttk.LabelFrame(self,text="台北",width=500,height=400,borderwidth=2,relief=tk.GROOVE)
+        displayFrame.pack(fill=tk.BOTH,padx=50,pady=(0,30))
         
-        # for key in cities_dict:
-        #     tk.Button(buttons_frame, text=key).pack(side=tk.LEFT)
-            # print(key)
         
     #實體的方法
     def button_click(self, event):  
