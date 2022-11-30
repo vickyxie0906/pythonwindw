@@ -54,21 +54,50 @@ class Window(tk.Tk):  # 繼承TK類別
 
 
 class DisplayFrame(ttk.LabelFrame):  # 繼承ttk.LabelFrame父類別
-    def __init__(self, parent, data=None, **kwargs):  # **kwargs是打包上面DisplayFrame()裡的內容
+    def __init__(self, parent, data=None, **kwargs):  # **kwargs是打包上面DisplayFrame()裡self之後的內容
         super().__init__(parent, **kwargs)  # parent為父類別,**kwargs是dict為引數名稱
         self.city_data = data
-        leftFrame = CustomFrame(self, width=200, height=200, bg="#87e0fd")
+        # 拆解資料分3份
+        totsl_rows = len(self.city_data)
+        column_rows = totsl_rows//3+1
+        leftData = self.city_data[:column_rows]  # :=>從0開始 到14
+        centerData = self.city_data[column_rows:column_rows*2]  # 14不包含 到28
+        rightData = self.city_data[column_rows*2:]  # 28到最後
+
+        leftFrame = CustomFrame(self, data=leftData,
+                                width=200, height=200, bg="#87e0fd")
         leftFrame.pack(side=tk.LEFT)
 
-        centerFrame = CustomFrame(self, width=200, height=200, bg="#fcecfc")
+        centerFrame = CustomFrame(
+            self, data=centerData, width=200, height=200, bg="#fcecfc")
         centerFrame.pack(side=tk.LEFT)
 
-        rightFrame = CustomFrame(self, width=200, height=200, bg="#fefcea")
+        rightFrame = CustomFrame(self, data=rightData,
+                                 width=200, height=200, bg="#fefcea")
         rightFrame.pack(side=tk.LEFT)
 
+
 class CustomFrame(tk.Frame):
-    def __init__(self, parent, **kwargs):
+    def __init__(self, parent, data=None, **kwargs):  # **kwargs是打包上面CustomFrame()裡self之後的內容
         super().__init__(parent, **kwargs)
+        self.list_data = data
+        print(self.list_data)
+        self.tree = ttk.Treeview(self, columns=['#1', '#2', '#3', '#4'])
+
+        self.tree.pack(side=tk.LEFT)
+
+        self.tree.heading('#1', text='時間')
+        self.tree.heading('#2', text='溫度')
+        self.tree.heading('#3', text='狀態')
+        self.tree.heading('#4', text='濕度')
+
+        self.tree.column('#1', width=130, anchor='center')
+        self.tree.column('#2', width=50, anchor='center')
+        self.tree.column('#3', width=80, anchor='center')
+        self.tree.column('#4', width=50, anchor='center')
+
+        for item in self.list_data:
+            self.tree.insert('',tk.END,values=item)
 
 
 def main():
