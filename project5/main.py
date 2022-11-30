@@ -16,8 +16,8 @@ class Window(tk.Tk): #繼承TK類別
         grid_row_nums=3
         for index, cities in enumerate(cities_dict.items()):  # enumerate會回傳索引值 將數據組合為索引序列 一般用在迴圈 加上.items()回傳 key value
             # print(index,key)
-            cname, ename = cities  # key value變數名
-            tk.Button(buttons_frame, text=f"{cname}{ename}", command=self.button_click,font=("Arial", 15),
+            cname, ename = cities  # key value變數名 #command 註冊
+            tk.Button(buttons_frame, text=f"{cname}\n{ename}", command=self.button_click,font=("Arial", 15),width=8,
                       padx=20, pady=3).grid(row=index % grid_row_nums, column=index//grid_row_nums)
             # tk.Button(buttons_frame, text=key, font=("Arial",15),padx=20, pady=3).grid(row=index % 3, column=index//3)
             # 建立按鈕, 字體 15 寬20 高3. grid 網格容器
