@@ -2,6 +2,9 @@ import datasource as ds  # 載入datasource 縮寫ds
 from secrets import api_key  # 引入secrets 的api_key
 import tkinter as tk  # 引入tkinter縮寫tk
 from tkinter import ttk, messagebox
+#pip install pyinstaller 下載打包專案
+#pyinstaller - F .\main.py 打包專案
+#pyinstaller - F .\main.py - i ./1.ico 建ICO圖
 
 
 # 建立框架
